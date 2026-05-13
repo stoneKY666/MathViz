@@ -13,6 +13,10 @@
 
 ![MathViz Cover](./assets/封面.png)
 
+<p align="center">
+  <img src="./assets/pixel-art-hero.svg" alt="MathViz 像素艺术" width="630"/>
+</p>
+
 ---
 
 ## ✨ 功能亮点
@@ -85,6 +89,34 @@ pnpm dev
 3. **质量验证** — 检查页面结构、禁止危险函数（`eval` / `new Function`）、限制外部脚本
 4. **自动修复** — 验证失败时自动触发一次修复重写
 5. **后处理** — 注入 KaTeX 渲染引擎，修正 LaTeX 分隔符语法
+
+## 🧩 Agent Skill
+
+本仓库同时提供一个独立的 Codex Skill：`mathviz-interactive-visualizer`。它不依赖本项目源码，只复用 MathViz 的核心方法论，帮助 Agent 生成、修复和校验自包含的数学/科学交互式 HTML 可视化页面。
+
+### 安装
+
+```bash
+python ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --repo yangjinshi16-create/MathViz --path skills/mathviz-interactive-visualizer
+```
+
+Windows 示例：
+
+```powershell
+python C:\Users\stone\.codex\skills\.system\skill-installer\scripts\install-skill-from-github.py --repo yangjinshi16-create/MathViz --path skills/mathviz-interactive-visualizer
+```
+
+安装后重启 Codex，然后使用：
+
+```text
+Use $mathviz-interactive-visualizer to create and validate a self-contained interactive HTML visualization for 傅里叶变换.
+```
+
+Skill 自带独立校验脚本，可用于检查生成结果：
+
+```bash
+node ~/.codex/skills/mathviz-interactive-visualizer/scripts/validate-mathviz-html.mjs ./example.html
+```
 
 ## 📁 项目结构
 
@@ -180,6 +212,28 @@ Optional parameters: Subject, Concept Overview, Design Idea, Key Points, Languag
 3. **Quality Validation** — Structural integrity and security checks
 4. **Auto-Repair** — One-shot repair loop on validation failure
 5. **Post-Processing** — KaTeX injection and LaTeX syntax correction
+
+## Agent Skill
+
+This repository also ships a standalone Codex Skill: `mathviz-interactive-visualizer`. It does not depend on the MathViz app source code; it packages the MathViz workflow as reusable agent guidance for generating, repairing, and validating self-contained interactive math/science HTML visualizations.
+
+Install it from GitHub:
+
+```bash
+python ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --repo yangjinshi16-create/MathViz --path skills/mathviz-interactive-visualizer
+```
+
+Restart Codex after installation, then invoke it with:
+
+```text
+Use $mathviz-interactive-visualizer to create and validate a self-contained interactive HTML visualization for Fourier Transform.
+```
+
+The skill includes a standalone validator:
+
+```bash
+node ~/.codex/skills/mathviz-interactive-visualizer/scripts/validate-mathviz-html.mjs ./example.html
+```
 
 ## License
 

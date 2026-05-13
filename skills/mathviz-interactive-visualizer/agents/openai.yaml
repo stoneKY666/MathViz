@@ -1,0 +1,6 @@
+interface:
+  display_name: "MathViz Interactive Visualizer"
+  short_description: "Create interactive math concept visualizations"
+  default_prompt: "Use $mathviz-interactive-visualizer to create and validate a self-contained interactive HTML visualization for a math or science concept."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 320" font-family="monospace">
+  <defs>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4a9eda"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="630" height="320" fill="#f0f4f8" rx="14"/>
+
+  <!-- Title banner -->
+  <rect x="155" y="10" width="320" height="36" fill="#4a9eda" rx="8"/>
+  <text x="315" y="34" font-size="18px" fill="white" text-anchor="middle" font-weight="bold">📐 MathViz — 数学可视化助手</text>
+
+  <!-- ========== LEFT: Pixel Art Student Character ========== -->
+  <g transform="translate(50, 80)">
+    <!-- Hair top -->
+    <rect x="14" y="0" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="21" y="0" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="28" y="0" width="7" height="7" fill="#2C2C2C"/>
+    <!-- Hair row -->
+    <rect x="7"  y="7" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="14" y="7" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="21" y="7" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="28" y="7" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="35" y="7" width="7" height="7" fill="#2C2C2C"/>
+    <!-- Face top -->
+    <rect x="7"  y="14" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="14" y="14" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="21" y="14" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="28" y="14" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="35" y="14" width="7" height="7" fill="#FFDAB9"/>
+    <!-- Eyes row -->
+    <rect x="7"  y="21" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="14" y="21" width="7" height="7" fill="#333"/>
+    <rect x="21" y="21" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="28" y="21" width="7" height="7" fill="#333"/>
+    <rect x="35" y="21" width="7" height="7" fill="#FFDAB9"/>
+    <!-- Mouth row -->
+    <rect x="7"  y="28" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="14" y="28" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="21" y="28" width="7" height="7" fill="#E8967A"/>
+    <rect x="28" y="28" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="35" y="28" width="7" height="7" fill="#FFDAB9"/>
+    <!-- Body -->
+    <rect x="0"  y="35" width="7" height="7" fill="#FFDAB9"/>
+    <rect x="7"  y="35" width="7" height="7" fill="#4a9eda"/>
+    <rect x="14" y="35" width="7" height="7" fill="#4a9eda"/>
+    <rect x="21" y="35" width="7" height="7" fill="#4a9eda"/>
+    <rect x="28" y="35" width="7" height="7" fill="#4a9eda"/>
+    <rect x="35" y="35" width="7" height="7" fill="#4a9eda"/>
+    <rect x="42" y="35" width="7" height="7" fill="#FFDAB9"/>
+    <!-- Body lower -->
+    <rect x="7"  y="42" width="7" height="7" fill="#4a9eda"/>
+    <rect x="14" y="42" width="7" height="7" fill="#4a9eda"/>
+    <rect x="21" y="42" width="7" height="7" fill="#4a9eda"/>
+    <rect x="28" y="42" width="7" height="7" fill="#4a9eda"/>
+    <rect x="35" y="42" width="7" height="7" fill="#4a9eda"/>
+    <!-- Legs -->
+    <rect x="10" y="49" width="7" height="7" fill="#444"/>
+    <rect x="17" y="49" width="7" height="7" fill="#444"/>
+    <rect x="26" y="49" width="7" height="7" fill="#444"/>
+    <rect x="33" y="49" width="7" height="7" fill="#444"/>
+    <!-- Shoes -->
+    <rect x="7"  y="56" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="14" y="56" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="26" y="56" width="7" height="7" fill="#2C2C2C"/>
+    <rect x="33" y="56" width="7" height="7" fill="#2C2C2C"/>
+    <!-- Glasses -->
+    <rect x="12" y="20" width="11" height="9" fill="none" stroke="#555" stroke-width="1.5" rx="2"/>
+    <rect x="28" y="20" width="11" height="9" fill="none" stroke="#555" stroke-width="1.5" rx="2"/>
+    <line x1="23" y1="24" x2="28" y2="24" stroke="#555" stroke-width="1.5"/>
+  </g>
+
+  <!-- ========== CENTER: Math Visualization Graph ========== -->
+  <g transform="translate(180, 65)">
+    <!-- Graph background -->
+    <rect x="0" y="0" width="200" height="140" fill="white" stroke="#ccc" stroke-width="1.5" rx="6"/>
+    <!-- Grid lines -->
+    <line x1="30" y1="20" x2="30" y2="120" stroke="#eee" stroke-width="1"/>
+    <line x1="30" y1="120" x2="185" y2="120" stroke="#eee" stroke-width="1"/>
+    <line x1="30" y1="95" x2="185" y2="95" stroke="#f0f0f0" stroke-width="0.5"/>
+    <line x1="30" y1="70" x2="185" y2="70" stroke="#f0f0f0" stroke-width="0.5"/>
+    <line x1="30" y1="45" x2="185" y2="45" stroke="#f0f0f0" stroke-width="0.5"/>
+    <!-- Axis labels -->
+    <text x="15" y="25" font-size="9" fill="#888">y</text>
+    <text x="180" y="135" font-size="9" fill="#888">x</text>
+    <!-- Sine wave (pixel-style) -->
+    <rect x="37"  y="63" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="49"  y="48" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="61"  y="38" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="73"  y="40" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="85"  y="53" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="97"  y="68" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="109" y="80" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="121" y="85" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="133" y="80" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="145" y="65" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="157" y="48" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <rect x="169" y="35" width="5" height="5" fill="#e74c3c" rx="1"/>
+    <!-- Bars (bar chart overlay) -->
+    <rect x="36"  y="85" width="14" height="35" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <rect x="58"  y="55" width="14" height="65" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <rect x="80"  y="70" width="14" height="50" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <rect x="102" y="90" width="14" height="30" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <rect x="124" y="60" width="14" height="60" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <rect x="146" y="40" width="14" height="80" fill="#4a9eda" opacity="0.35" rx="2"/>
+    <!-- Graph title -->
+    <text x="100" y="14" font-size="10" fill="#4a9eda" text-anchor="middle" font-weight="bold">f(x) = sin(x)</text>
+  </g>
+
+  <!-- ========== Floating Math Symbols ========== -->
+  <!-- π -->
+  <g transform="translate(410, 80)">
+    <rect width="36" height="28" fill="#e8f4fd" stroke="#4a9eda" stroke-width="1.5" rx="6"/>
+    <text x="18" y="21" font-size="18" fill="#4a9eda" text-anchor="middle" font-weight="bold">π</text>
+  </g>
+  <!-- ∑ -->
+  <g transform="translate(460, 120)">
+    <rect width="36" height="28" fill="#fdf2e8" stroke="#da8a4a" stroke-width="1.5" rx="6"/>
+    <text x="18" y="21" font-size="18" fill="#da8a4a" text-anchor="middle" font-weight="bold">∑</text>
+  </g>
+  <!-- ∫ -->
+  <g transform="translate(510, 75)">
+    <rect width="36" height="28" fill="#e8fde8" stroke="#5a9e5a" stroke-width="1.5" rx="6"/>
+    <text x="18" y="22" font-size="20" fill="#5a9e5a" text-anchor="middle" font-weight="bold">∫</text>
+  </g>
+  <!-- √ -->
+  <g transform="translate(430, 170)">
+    <rect width="36" height="28" fill="#f0e8fd" stroke="#8a4ada" stroke-width="1.5" rx="6"/>
+    <text x="18" y="21" font-size="18" fill="#8a4ada" text-anchor="middle" font-weight="bold">√</text>
+  </g>
+  <!-- ∞ -->
+  <g transform="translate(500, 165)">
+    <rect width="36" height="28" fill="#fde8e8" stroke="#da4a4a" stroke-width="1.5" rx="6"/>
+    <text x="18" y="21" font-size="18" fill="#da4a4a" text-anchor="middle" font-weight="bold">∞</text>
+  </g>
+  <!-- Δ -->
+  <g transform="translate(560, 115)">
+    <rect width="36" height="28" fill="#fdfde8" stroke="#b8a820" stroke-width="1.5" rx="6"/>
+    <text x="18" y="22" font-size="18" fill="#b8a820" text-anchor="middle" font-weight="bold">Δ</text>
+  </g>
+
+  <!-- ========== Connection Arrow (student → graph) ========== -->
+  <line x1="145" y1="110" x2="175" y2="125" stroke="#4a9eda" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-blue)"/>
+
+  <!-- ========== Chat Bubbles ========== -->
+  <!-- Left bubble: student asks -->
+  <rect x="45" y="215" width="230" height="32" fill="#e8f4fd" stroke="#4a9eda" stroke-width="1.5" rx="8"/>
+  <polygon points="100,247 92,258 108,250" fill="#e8f4fd" stroke="#4a9eda" stroke-width="1.5"/>
+  <rect x="96" y="244" width="14" height="6" fill="#e8f4fd"/>
+  <text x="58" y="236" font-size="12px" fill="#333">🤔 这个函数的图像长什么样？</text>
+
+  <!-- Right bubble: MathViz responds -->
+  <rect x="340" y="215" width="250" height="32" fill="#e8fde8" stroke="#5a9e5a" stroke-width="1.5" rx="8"/>
+  <polygon points="540,247 556,258 536,250" fill="#e8fde8" stroke="#5a9e5a" stroke-width="1.5"/>
+  <rect x="534" y="244" width="14" height="6" fill="#e8fde8"/>
+  <text x="353" y="236" font-size="12px" fill="#333">✨ 让我来帮你可视化！请看上方图表</text>
+
+  <!-- Arrow between bubbles -->
+  <line x1="280" y1="231" x2="335" y2="231" stroke="#4a9eda" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- ========== Bottom tagline ========== -->
+  <rect x="140" y="265" width="350" height="32" fill="#4a9eda" rx="10"/>
+  <text x="315" y="286" font-size="13px" fill="white" text-anchor="middle" font-weight="bold">🚀 AI 驱动的数学概念交互式可视化平台</text>
+
+  <!-- ========== Tiny decorative pixel elements ========== -->
+  <!-- Stars -->
+  <rect x="555" y="55" width="5" height="5" fill="#FFD700" rx="1"/>
+  <rect x="565" y="48" width="5" height="5" fill="#FFD700" rx="1"/>
+  <rect x="575" y="55" width="5" height="5" fill="#FFD700" rx="1"/>
+  <rect x="565" y="62" width="5" height="5" fill="#FFD700" rx="1"/>
+  <rect x="565" y="55" width="5" height="5" fill="#FFF" rx="1"/>
+
+  <rect x="395" y="200" width="4" height="4" fill="#FFD700" rx="1"/>
+  <rect x="403" y="195" width="4" height="4" fill="#FFD700" rx="1"/>
+  <rect x="411" y="200" width="4" height="4" fill="#FFD700" rx="1"/>
+  <rect x="403" y="207" width="4" height="4" fill="#FFD700" rx="1"/>
+
+</svg>
