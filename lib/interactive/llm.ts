@@ -1,4 +1,5 @@
-import OpenAI from 'openai';
+import { generateText } from 'ai';
+import { resolveModel } from '@/lib/server/resolve-model';
 import type { ModelConfig } from './types';
 import { InteractiveAgentError } from './types';
 
@@ -40,10 +41,9 @@ function resolveEnvKey(providerId?: string): string {
 }
 
 /**
- * Parse error from OpenAI SDK error response
+ * Normalize provider SDK and network errors for UI display.
  */
 function parseApiError(error: unknown): string {
-  // Handle OpenAI SDK's error structure
   const errObj = error as Record<string, unknown>;
   const errorMessage = errObj.message as string | undefined;
   const errorCode = errObj.code as string | undefined;
@@ -121,7 +121,7 @@ export async function callLlmWithModelConfig(
   const envApiKey = process.env[`${envKey}_API_KEY`] || process.env.OPENAI_API_KEY;
   const apiKey = config.apiKey?.trim() || envApiKey || '';
   const envBaseUrl = process.env[`${envKey}_BASE_URL`] || process.env.OPENAI_BASE_URL;
-  const baseURL = config.baseUrl?.trim() || envBaseUrl || undefined;
+  const baseUrl = config.baseUrl?.trim() || envBaseUrl || undefined;
 
   if (config.requiresApiKey && !apiKey) {
     throw new InteractiveAgentError(
@@ -134,40 +134,41 @@ export async function callLlmWithModelConfig(
     providerId: config.providerId,
     model: config.model,
     hasApiKey: !!apiKey,
-    baseURL: baseURL || '(default)',
-  });
-
-  const client = new OpenAI({
-    apiKey: apiKey || 'no-key-required',
-    baseURL,
-    timeout: DEFAULT_TIMEOUT,
+    baseUrl: baseUrl || '(default)',
   });
 
   try {
-    // Use streaming to keep the connection alive and avoid gateway timeouts
-    const stream = await client.chat.completions.create({
-      model: config.model.trim(),
-      temperature: 0.2,
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt },
-      ],
-      stream: true,
+    const resolved = resolveModel({
+      modelString: `${config.providerId}:${config.model.trim()}`,
+      apiKey,
+      baseUrl,
+      providerType: config.providerType,
+      requiresApiKey: config.requiresApiKey,
     });
 
-    // Collect the full response from the stream
-    let fullContent = '';
-    for await (const chunk of stream) {
-      const delta = chunk.choices?.[0]?.delta?.content;
-      if (delta) {
-        fullContent += delta;
-      }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), DEFAULT_TIMEOUT);
+
+    let text = '';
+    try {
+      const result = await generateText({
+        model: resolved.model,
+        temperature: 0.2,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+        abortSignal: controller.signal,
+      });
+      text = result.text;
+    } finally {
+      clearTimeout(timeout);
     }
 
-    if (!fullContent) {
+    if (!text) {
       throw new InteractiveAgentError('MODEL_CONFIG_INVALID', 'Empty LLM response.');
     }
-    return fullContent;
+    return text;
   } catch (error) {
     const parsedError = parseApiError(error);
     console.error('[callLlm] Error:', parsedError);

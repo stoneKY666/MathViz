@@ -16,6 +16,11 @@ export const maxDuration = 300;
 
 type GenerateBody = GenerateInteractivePageInput & { model?: ModelConfig };
 
+function toProviderType(value: string | null | undefined): ModelConfig['providerType'] {
+  if (value === 'openai' || value === 'anthropic' || value === 'google') return value;
+  return undefined;
+}
+
 /**
  * SSE helper: create a ReadableStream that sends SSE events
  */
@@ -93,13 +98,14 @@ export async function POST(req: NextRequest) {
   const explicitModelString = body.model?.model
     ? `${body.model.providerId}:${body.model.model}`
     : undefined;
+  const requestedProviderType = body.model?.providerType ?? toProviderType(req.headers.get('x-provider-type'));
   const resolved = explicitModelString
     ? resolveModel({
         modelString: explicitModelString,
         apiKey: body.model?.apiKey || '',
         baseUrl: body.model?.baseUrl || undefined,
         requiresApiKey: body.model?.requiresApiKey,
-        providerType: req.headers.get('x-provider-type') || undefined,
+        providerType: requestedProviderType,
       })
     : resolveModelFromHeaders(req);
 
@@ -109,6 +115,7 @@ export async function POST(req: NextRequest) {
     model: modelId,
     apiKey: resolved.apiKey,
     baseUrl: resolved.baseUrl || '',
+    providerType: requestedProviderType,
     requiresApiKey:
       body.model?.requiresApiKey ??
       (req.headers.get('x-requires-api-key') || 'false') === 'true',

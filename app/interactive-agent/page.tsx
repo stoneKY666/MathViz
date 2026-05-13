@@ -600,7 +600,7 @@ export default function InteractiveAgentPage() {
                   title="Interactive HTML Preview"
                   srcDoc={iframeSrcDoc}
                   className="w-full h-[520px] border border-blue-200/50 rounded-lg bg-white shadow-inner"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  sandbox="allow-scripts allow-forms allow-popups"
                 />
               ) : (
                 <div className="h-[520px] border border-blue-200/30 rounded-lg grid place-items-center text-sm text-muted-foreground bg-gradient-to-br from-blue-50/30 to-violet-50/20">

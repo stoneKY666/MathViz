@@ -72,4 +72,5 @@ export interface ModelConfig {
   baseUrl?: string;
   apiKey?: string;
   requiresApiKey?: boolean;
+  providerType?: 'openai' | 'anthropic' | 'google';
 }
