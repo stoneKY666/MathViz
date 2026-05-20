@@ -1,3 +1,15 @@
+/**
+ * use-i18n.tsx - React 国际化 Hook 与 Provider 组件
+ *
+ * 基于 react-i18next 封装的客户端国际化方案。
+ * I18nProvider 组件在挂载时自动检测浏览器语言或从 localStorage 读取用户偏好，
+ * 并通过 resolveLocale 函数匹配最合适的受支持语言。
+ * 语言切换时同步更新 i18next 实例和 localStorage 存储。
+ * 使用 React Context 向子组件提供 locale、setLocale 和翻译函数 t。
+ *
+ * @exports I18nProvider - 国际化上下文 Provider 组件
+ * @exports useI18n - 获取当前语言环境、语言切换方法和翻译函数的 Hook
+ */
 'use client';
 
 import { createContext, useContext, useEffect, ReactNode } from 'react';

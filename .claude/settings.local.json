@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install *)",
+      "Bash(pnpm exec *)",
+      "Bash(pnpm lint)",
+      "Bash(grep -rn --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' --include='*.mjs' --include='*.json' -E '\\(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{36}|AKIA[A-Z0-9]{16}|AIza[a-zA-Z0-9_-]{35}\\)' --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git)",
+      "Bash(grep -rn --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' --include='*.mjs' -E 'from.*['\"'\"']\\(\\\\\\\\./|\\\\\\\\.\\\\\\\\./|@/\\).*['\"'\"']' --exclude-dir=node_modules --exclude-dir=.next app/ components/ lib/)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(gh repo *)",
+      "Bash(where gh *)"
+    ]
+  }
+}

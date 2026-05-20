@@ -1,3 +1,10 @@
+/**
+ * ui/separator.tsx - 分隔线组件
+ *
+ * 基于 Radix UI Separator 原语封装的分隔线组件。
+ * 支持水平和垂直两种方向，用于分隔内容区域。
+ * 在按钮组、菜单、表单等场景中使用。
+ */
 'use client';
 
 import * as React from 'react';

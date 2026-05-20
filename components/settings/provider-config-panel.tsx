@@ -1,3 +1,17 @@
+/**
+ * settings/provider-config-panel.tsx - 提供商配置面板
+ *
+ * 展示和编辑单个 AI 提供商的详细配置。
+ * 包含：
+ *   1. API Key 输入（密码字段，支持显示/隐藏）
+ *   2. Base URL 配置（支持恢复默认值）
+ *   3. 模型列表管理（添加/编辑/删除自定义模型）
+ *   4. 提供商删除确认（仅自定义提供商）
+ *   5. 服务端配置标识（显示锁图标表示服务端锁定的配置）
+ * 配置变更实时同步到 Zustand 设置存储。
+ *
+ * @exports ProviderConfigPanel - 提供商配置面板组件
+ */
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';

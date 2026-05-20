@@ -1,3 +1,10 @@
+/**
+ * ui/switch.tsx - 开关组件
+ *
+ * 基于 Radix UI Switch 原语封装的开关切换组件。
+ * 用于布尔值的开/关切换，支持受控和非受控模式。
+ * 使用 Tailwind CSS 实现滑轨和滑块的动画效果。
+ */
 'use client';
 
 import * as React from 'react';

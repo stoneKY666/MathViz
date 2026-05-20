@@ -1,3 +1,10 @@
+/**
+ * ui/combobox.tsx - 组合框组件
+ *
+ * 基于 Base UI Combobox 原语封装的带搜索功能的下拉选择组件。
+ * 结合了输入框和下拉列表，支持键盘导航、搜索过滤和选项选择。
+ * 用于模型选择器等需要从大量选项中快速搜索和选择的场景。
+ */
 'use client';
 
 import * as React from 'react';

@@ -1,3 +1,10 @@
+/**
+ * 文件名称：interactive-service.test.ts
+ * 文件作用：交互式页面生成服务的单元测试
+ * 实现方式：通过依赖注入模拟 LLM 调用，测试 generateInteractivePage 的自动修复逻辑；
+ *          首次返回无效 HTML 时，验证流水线能否通过修复重试最终生成有效页面
+ */
+
 import { describe, expect, it } from 'vitest';
 import { generateInteractivePage } from '../lib/interactive/service';
 import type { InteractiveAgentDependencies } from '../lib/interactive/types';

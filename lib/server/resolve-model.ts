@@ -1,3 +1,16 @@
+/**
+ * @file resolve-model.ts
+ * @description 服务端模型解析与实例化
+ *
+ * 根据客户端请求参数（模型字符串、API 密钥、基础 URL）解析并创建 LLM 模型实例。
+ * 解析优先级：客户端参数 > 服务端环境变量 > 提供商默认值。
+ * 在生产环境下对所有 base URL 执行 SSRF 安全校验。
+ *
+ * @exports ResolvedModel - 解析后的模型信息接口（包含模型实例、密钥、URL 等）
+ * @exports resolveModel - 从参数对象解析模型的核心函数
+ * @exports resolveModelFromHeaders - 从 NextRequest 请求头中解析模型的便捷函数
+ */
+
 import type { NextRequest } from 'next/server';
 import { getModel, parseModelString, type ModelWithInfo } from '@/lib/ai/providers';
 import { resolveApiKey, resolveBaseUrl } from '@/lib/server/provider-config';

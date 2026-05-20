@@ -1,3 +1,17 @@
+/**
+ * html-extractor.ts - HTML 文档提取器
+ *
+ * 从 LLM 响应文本中提取完整的 HTML 文档。
+ * 处理多种边界情况：
+ *   1. 直接查找 <!DOCTYPE html> 或 <html> 标签作为起始位置
+ *   2. 从末尾反向搜索 </html> 作为结束位置
+ *   3. 处理 markdown 代码块包裹（```html ... ```）
+ *   4. 处理响应截断时的不完整 HTML
+ * 返回提取到的完整 HTML 字符串，或 null（未找到有效 HTML）。
+ *
+ * @exports extractHtmlDocument - 从 LLM 响应中提取 HTML 文档
+ */
+
 export function extractHtmlDocument(response: string): string | null {
   // First, try to find the HTML content directly
   const doctypeStart = response.indexOf('<!DOCTYPE html>');

@@ -1,0 +1,1101 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简谐运动 - 交互式学习</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+        
+        .spring-segment {
+            stroke: #94a3b8;
+            stroke-width: 2.5;
+            fill: none;
+        }
+        
+        .mass-block {
+            filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.4));
+        }
+        
+        .trail-dot {
+            transition: opacity 0.1s;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #818cf8;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(129, 140, 248, 0.6);
+        }
+        
+        .btn-control {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-control:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .btn-control:active {
+            transform: scale(0.95);
+        }
+        
+        .formula-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+        }
+        
+        .energy-bar {
+            transition: width 0.05s linear;
+        }
+        
+        canvas {
+            border-radius: 12px;
+        }
+        
+        .indicator-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .tab-active {
+            background: rgba(129, 140, 248, 0.3);
+            border-color: #818cf8;
+        }
+    </style>
+</head>
+<body class="text-white p-4 md:p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold glow-text mb-2">简谐运动</h1>
+            <p class="text-indigo-300 text-sm md:text-base">Simple Harmonic Motion — 交互式物理学习</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <!-- Left Panel: Controls & Formulas -->
+            <div class="lg:col-span-3 space-y-4">
+                <!-- Controls -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-indigo-400 rounded-full indicator-dot"></span>
+                        控制面板
+                    </h2>
+                    
+                    <div class="flex gap-2 mb-4">
+                        <button id="btnPlay" class="btn-control flex-1 bg-indigo-600 hover:bg-indigo-500 rounded-xl py-2.5 font-medium text-sm">
+                            ▶ 播放
+                        </button>
+                        <button id="btnPause" class="btn-control flex-1 bg-amber-600 hover:bg-amber-500 rounded-xl py-2.5 font-medium text-sm hidden">
+                            ⏸ 暂停
+                        </button>
+                        <button id="btnReset" class="btn-control flex-1 bg-rose-600 hover:bg-rose-500 rounded-xl py-2.5 font-medium text-sm">
+                            ↺ 重置
+                        </button>
+                    </div>
+
+                    <!-- Amplitude -->
+                    <div class="mb-4">
+                        <label class="flex justify-between text-sm mb-1.5">
+                            <span class="text-indigo-300">振幅 A</span>
+                            <span id="ampValue" class="font-mono text-white">150 px</span>
+                        </label>
+                        <input type="range" id="ampSlider" min="50" max="250" value="150" class="w-full">
+                    </div>
+
+                    <!-- Angular Frequency -->
+                    <div class="mb-4">
+                        <label class="flex justify-between text-sm mb-1.5">
+                            <span class="text-indigo-300">角频率 ω</span>
+                            <span id="omegaValue" class="font-mono text-white">2.0 rad/s</span>
+                        </label>
+                        <input type="range" id="omegaSlider" min="5" max="60" value="20" class="w-full">
+                    </div>
+
+                    <!-- Phase -->
+                    <div class="mb-4">
+                        <label class="flex justify-between text-sm mb-1.5">
+                            <span class="text-indigo-300">初相位 φ</span>
+                            <span id="phaseValue" class="font-mono text-white">0°</span>
+                        </label>
+                        <input type="range" id="phaseSlider" min="0" max="360" value="0" class="w-full">
+                    </div>
+
+                    <!-- Damping -->
+                    <div class="mb-2">
+                        <label class="flex justify-between text-sm mb-1.5">
+                            <span class="text-indigo-300">阻尼 γ</span>
+                            <span id="dampValue" class="font-mono text-white">0.00</span>
+                        </label>
+                        <input type="range" id="dampSlider" min="0" max="100" value="0" class="w-full">
+                    </div>
+                </div>
+
+                <!-- Real-time Values -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-emerald-400 rounded-full indicator-dot"></span>
+                        实时数据
+                    </h2>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">时间 t</span>
+                            <span id="timeDisplay" class="font-mono text-emerald-300">0.000 s</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">位移 x</span>
+                            <span id="posDisplay" class="font-mono text-cyan-300">0.000 m</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">速度 v</span>
+                            <span id="velDisplay" class="font-mono text-amber-300">0.000 m/s</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">加速度 a</span>
+                            <span id="accDisplay" class="font-mono text-rose-300">0.000 m/s²</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Energy -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-amber-400 rounded-full indicator-dot"></span>
+                        能量
+                    </h2>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-cyan-400">动能 Eₖ</span>
+                                <span id="keDisplay" class="font-mono">0.00 J</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+                                <div id="keBar" class="energy-bar h-full bg-gradient-to-r from-cyan-500 to-cyan-400 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-rose-400">势能 Eₚ</span>
+                                <span id="peDisplay" class="font-mono">0.00 J</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+                                <div id="peBar" class="energy-bar h-full bg-gradient-to-r from-rose-500 to-rose-400 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-indigo-400">总能量 E</span>
+                                <span id="teDisplay" class="font-mono">0.00 J</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3 overflow-hidden">
+                                <div id="teBar" class="energy-bar h-full bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Panel: Main Animation -->
+            <div class="lg:col-span-6 space-y-4">
+                <!-- Spring-Mass System -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-cyan-400 rounded-full indicator-dot"></span>
+                        弹簧振子系统
+                    </h2>
+                    <canvas id="springCanvas" width="700" height="220" class="w-full bg-black/30"></canvas>
+                </div>
+
+                <!-- Graphs -->
+                <div class="glass-card rounded-2xl p-4">
+                    <div class="flex gap-2 mb-3">
+                        <button id="tabXT" class="tab-btn tab-active text-xs px-3 py-1.5 rounded-lg border border-white/20 transition-all">x-t 图</button>
+                        <button id="tabVT" class="tab-btn text-xs px-3 py-1.5 rounded-lg border border-white/20 transition-all">v-t 图</button>
+                        <button id="tabPhase" class="tab-btn text-xs px-3 py-1.5 rounded-lg border border-white/20 transition-all">相图 (x-v)</button>
+                    </div>
+                    <canvas id="graphCanvas" width="700" height="280" class="w-full bg-black/30"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Panel: Formulas & Explanation -->
+            <div class="lg:col-span-3 space-y-4">
+                <!-- Core Formulas -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-purple-400 rounded-full indicator-dot"></span>
+                        核心公式
+                    </h2>
+                    <div class="space-y-3">
+                        <div class="formula-box rounded-xl p-3">
+                            <p class="text-xs text-slate-400 mb-1">位移方程</p>
+                            <p class="text-center text-lg font-mono text-cyan-300">
+                                \( x(t) = A\cos(\omega t + \varphi) \)
+                            </p>
+                        </div>
+                        <div class="formula-box rounded-xl p-3">
+                            <p class="text-xs text-slate-400 mb-1">速度方程</p>
+                            <p class="text-center text-lg font-mono text-amber-300">
+                                \( v(t) = -A\omega\sin(\omega t + \varphi) \)
+                            </p>
+                        </div>
+                        <div class="formula-box rounded-xl p-3">
+                            <p class="text-xs text-slate-400 mb-1">加速度方程</p>
+                            <p class="text-center text-lg font-mono text-rose-300">
+                                \( a(t) = -A\omega^2\cos(\omega t + \varphi) \)
+                            </p>
+                        </div>
+                        <div class="formula-box rounded-xl p-3">
+                            <p class="text-xs text-slate-400 mb-1">周期与频率</p>
+                            <p class="text-center text-sm font-mono text-indigo-300">
+                                \( T = \dfrac{2\pi}{\omega} \), \( f = \dfrac{1}{T} \)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Concepts -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-rose-400 rounded-full indicator-dot"></span>
+                        关键概念
+                    </h2>
+                    <div class="space-y-3 text-sm text-slate-300">
+                        <div class="flex gap-2">
+                            <span class="text-cyan-400 font-bold mt-0.5">•</span>
+                            <div>
+                                <span class="text-white font-medium">振幅 A</span>
+                                <p class="text-xs text-slate-400 mt-0.5">物体偏离平衡位置的最大距离</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-amber-400 font-bold mt-0.5">•</span>
+                            <div>
+                                <span class="text-white font-medium">角频率 ω</span>
+                                <p class="text-xs text-slate-400 mt-0.5">决定振动快慢，ω = 2πf = 2π/T</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-indigo-400 font-bold mt-0.5">•</span>
+                            <div>
+                                <span class="text-white font-medium">初相位 φ</span>
+                                <p class="text-xs text-slate-400 mt-0.5">t=0 时的相位，决定初始运动状态</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-rose-400 font-bold mt-0.5">•</span>
+                            <div>
+                                <span class="text-white font-medium">回复力</span>
+                                <p class="text-xs text-slate-400 mt-0.5">F = -kx，始终指向平衡位置</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current State Formula -->
+                <div class="glass-card rounded-2xl p-4">
+                    <h2 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-yellow-400 rounded-full indicator-dot"></span>
+                        当前状态
+                    </h2>
+                    <div class="formula-box rounded-xl p-3 text-center">
+                        <p id="currentFormula" class="font-mono text-sm text-white leading-relaxed">
+                            \( x(t) = 150\cos(2.0t) \)
+                        </p>
+                    </div>
+                    <div class="mt-3 formula-box rounded-xl p-3 text-center">
+                        <p id="currentVelocity" class="font-mono text-sm text-amber-300 leading-relaxed">
+                            \( v(t) = -300\sin(2.0t) \)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-6 text-xs text-slate-500">
+            简谐运动交互式学习模块 · 物理学
+        </footer>
+    </div>
+
+    <script>
+        // ============ STATE ============
+        const state = {
+            playing: false,
+            time: 0,
+            A: 150,
+            omega: 2.0,
+            phi: 0,
+            damping: 0,
+            graphMode: 'xt', // 'xt', 'vt', 'phase'
+            trail: [],
+            maxTrail: 500,
+            phaseTrail: [],
+            maxPhaseTrail: 800,
+            lastTimestamp: null,
+            animId: null
+        };
+
+        // ============ DOM ELEMENTS ============
+        const springCanvas = document.getElementById('springCanvas');
+        const graphCanvas = document.getElementById('graphCanvas');
+        const springCtx = springCanvas.getContext('2d');
+        const graphCtx = graphCanvas.getContext('2d');
+
+        const btnPlay = document.getElementById('btnPlay');
+        const btnPause = document.getElementById('btnPause');
+        const btnReset = document.getElementById('btnReset');
+
+        const ampSlider = document.getElementById('ampSlider');
+        const omegaSlider = document.getElementById('omegaSlider');
+        const phaseSlider = document.getElementById('phaseSlider');
+        const dampSlider = document.getElementById('dampSlider');
+
+        const ampValue = document.getElementById('ampValue');
+        const omegaValue = document.getElementById('omegaValue');
+        const phaseValue = document.getElementById('phaseValue');
+        const dampValue = document.getElementById('dampValue');
+
+        const timeDisplay = document.getElementById('timeDisplay');
+        const posDisplay = document.getElementById('posDisplay');
+        const velDisplay = document.getElementById('velDisplay');
+        const accDisplay = document.getElementById('accDisplay');
+
+        const keDisplay = document.getElementById('keDisplay');
+        const peDisplay = document.getElementById('peDisplay');
+        const teDisplay = document.getElementById('teDisplay');
+        const keBar = document.getElementById('keBar');
+        const peBar = document.getElementById('peBar');
+        const teBar = document.getElementById('teBar');
+
+        const currentFormula = document.getElementById('currentFormula');
+        const currentVelocity = document.getElementById('currentVelocity');
+
+        const tabXT = document.getElementById('tabXT');
+        const tabVT = document.getElementById('tabVT');
+        const tabPhase = document.getElementById('tabPhase');
+
+        // ============ HELPER FUNCTIONS ============
+        function getPosition(t) {
+            const dampFactor = Math.exp(-state.damping * t);
+            return state.A * Math.cos(state.omega * t + state.phi) * dampFactor;
+        }
+
+        function getVelocity(t) {
+            const dampFactor = Math.exp(-state.damping * t);
+            const dDamp = -state.damping * dampFactor;
+            const cosVal = Math.cos(state.omega * t + state.phi);
+            const sinVal = Math.sin(state.omega * t + state.phi);
+            return state.A * (dDamp * cosVal - state.omega * sinVal * dampFactor);
+        }
+
+        function getAcceleration(t) {
+            const x = getPosition(t);
+            return -state.omega * state.omega * x;
+        }
+
+        function resizeCanvas(canvas) {
+            const rect = canvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            canvas.getContext('2d').scale(dpr, dpr);
+            return { width: rect.width, height: rect.height };
+        }
+
+        // ============ DRAW SPRING ============
+        function drawSpring(ctx, x1, y1, x2, y2, coils, amplitude) {
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const len = Math.sqrt(dx * dx + dy * dy);
+            const angle = Math.atan2(dy, dx);
+
+            ctx.save();
+            ctx.translate(x1, y1);
+            ctx.rotate(angle);
+
+            const coilLen = len - 20;
+            const segLen = coilLen / (coils * 2);
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(10, 0);
+
+            for (let i = 0; i < coils * 2; i++) {
+                const x = 10 + (i + 1) * segLen;
+                const y = (i % 2 === 0 ? -1 : 1) * amplitude;
+                ctx.lineTo(x, y);
+            }
+
+            ctx.lineTo(len, 0);
+            ctx.strokeStyle = '#94a3b8';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        // ============ RENDER SPRING CANVAS ============
+        function renderSpring() {
+            const rect = springCanvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const dpr = window.devicePixelRatio || 1;
+
+            springCtx.save();
+            springCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            springCtx.clearRect(0, 0, w, h);
+
+            const centerY = h / 2;
+            const wallX = 40;
+            const massWidth = 50;
+            const massHeight = 50;
+            const equilibriumX = w / 2;
+            const x = getPosition(state.time);
+            const massX = equilibriumX + x * (w / 2 - wallX - massWidth - 20) / state.A;
+
+            // Draw wall
+            springCtx.fillStyle = '#475569';
+            springCtx.fillRect(wallX - 8, centerY - 60, 8, 120);
+            // Hatching on wall
+            springCtx.strokeStyle = '#64748b';
+            springCtx.lineWidth = 1;
+            for (let i = 0; i < 8; i++) {
+                const y = centerY - 60 + i * 16;
+                springCtx.beginPath();
+                springCtx.moveTo(wallX - 8, y);
+                springCtx.lineTo(wallX, y + 12);
+                springCtx.stroke();
+            }
+
+            // Draw equilibrium line
+            springCtx.setLineDash([5, 5]);
+            springCtx.strokeStyle = 'rgba(129, 140, 248, 0.3)';
+            springCtx.lineWidth = 1;
+            springCtx.beginPath();
+            springCtx.moveTo(equilibriumX, centerY - 70);
+            springCtx.lineTo(equilibriumX, centerY + 70);
+            springCtx.stroke();
+            springCtx.setLineDash([]);
+
+            // Label equilibrium
+            springCtx.fillStyle = 'rgba(129, 140, 248, 0.6)';
+            springCtx.font = '11px sans-serif';
+            springCtx.textAlign = 'center';
+            springCtx.fillText('平衡位置', equilibriumX, centerY + 85);
+
+            // Draw spring
+            const springEndX = massX - massWidth / 2;
+            const coils = 12;
+            const springAmp = 15;
+            drawSpring(springCtx, wallX, centerY, springEndX, centerY, coils, springAmp);
+
+            // Draw mass block
+            const gradient = springCtx.createLinearGradient(
+                massX - massWidth / 2, centerY - massHeight / 2,
+                massX + massWidth / 2, centerY + massHeight / 2
+            );
+            gradient.addColorStop(0, '#818cf8');
+            gradient.addColorStop(1, '#6366f1');
+            springCtx.fillStyle = gradient;
+            springCtx.shadowColor = 'rgba(99, 102, 241, 0.5)';
+            springCtx.shadowBlur = 15;
+            springCtx.beginPath();
+            springCtx.roundRect(massX - massWidth / 2, centerY - massHeight / 2, massWidth, massHeight, 8);
+            springCtx.fill();
+            springCtx.shadowBlur = 0;
+
+            // Mass label
+            springCtx.fillStyle = '#fff';
+            springCtx.font = 'bold 14px sans-serif';
+            springCtx.textAlign = 'center';
+            springCtx.textBaseline = 'middle';
+            springCtx.fillText('m', massX, centerY);
+
+            // Draw displacement arrow
+            if (Math.abs(x) > 2) {
+                const arrowY = centerY + massHeight / 2 + 25;
+                springCtx.strokeStyle = '#22d3ee';
+                springCtx.lineWidth = 2;
+                springCtx.beginPath();
+                springCtx.moveTo(equilibriumX, arrowY);
+                springCtx.lineTo(massX, arrowY);
+                springCtx.stroke();
+
+                // Arrow head
+                const dir = x > 0 ? 1 : -1;
+                springCtx.fillStyle = '#22d3ee';
+                springCtx.beginPath();
+                springCtx.moveTo(massX, arrowY);
+                springCtx.lineTo(massX - dir * 8, arrowY - 4);
+                springCtx.lineTo(massX - dir * 8, arrowY + 4);
+                springCtx.closePath();
+                springCtx.fill();
+
+                // Displacement label
+                springCtx.fillStyle = '#22d3ee';
+                springCtx.font = '12px sans-serif';
+                springCtx.textAlign = 'center';
+                springCtx.fillText('x', (equilibriumX + massX) / 2, arrowY - 8);
+            }
+
+            // Draw velocity arrow
+            const vel = getVelocity(state.time);
+            const velScale = 0.3;
+            if (Math.abs(vel) > 5) {
+                const velArrowY = centerY - massHeight / 2 - 20;
+                const velLen = vel * velScale;
+                springCtx.strokeStyle = '#fbbf24';
+                springCtx.lineWidth = 2;
+                springCtx.beginPath();
+                springCtx.moveTo(massX, velArrowY);
+                springCtx.lineTo(massX + velLen, velArrowY);
+                springCtx.stroke();
+
+                const vDir = vel > 0 ? 1 : -1;
+                springCtx.fillStyle = '#fbbf24';
+                springCtx.beginPath();
+                springCtx.moveTo(massX + velLen, velArrowY);
+                springCtx.lineTo(massX + velLen - vDir * 8, velArrowY - 4);
+                springCtx.lineTo(massX + velLen - vDir * 8, velArrowY + 4);
+                springCtx.closePath();
+                springCtx.fill();
+
+                springCtx.fillStyle = '#fbbf24';
+                springCtx.font = '12px sans-serif';
+                springCtx.textAlign = 'center';
+                springCtx.fillText('v', massX + velLen / 2, velArrowY - 8);
+            }
+
+            // Draw force arrow
+            const force = -state.omega * state.omega * x;
+            const forceScale = 0.15;
+            if (Math.abs(force) > 5) {
+                const forceArrowY = centerY;
+                const forceLen = force * forceScale;
+                const forceX = massX + (x > 0 ? massWidth / 2 + 5 : -massWidth / 2 - 5);
+                springCtx.strokeStyle = '#f43f5e';
+                springCtx.lineWidth = 2.5;
+                springCtx.beginPath();
+                springCtx.moveTo(forceX, forceArrowY);
+                springCtx.lineTo(forceX + forceLen, forceArrowY);
+                springCtx.stroke();
+
+                const fDir = force > 0 ? 1 : -1;
+                springCtx.fillStyle = '#f43f5e';
+                springCtx.beginPath();
+                springCtx.moveTo(forceX + forceLen, forceArrowY);
+                springCtx.lineTo(forceX + forceLen - fDir * 8, forceArrowY - 5);
+                springCtx.lineTo(forceX + forceLen - fDir * 8, forceArrowY + 5);
+                springCtx.closePath();
+                springCtx.fill();
+
+                springCtx.fillStyle = '#f43f5e';
+                springCtx.font = 'bold 12px sans-serif';
+                springCtx.textAlign = 'center';
+                springCtx.fillText('F', forceX + forceLen / 2, forceArrowY - 10);
+            }
+
+            // Draw scale markings
+            springCtx.fillStyle = 'rgba(255,255,255,0.2)';
+            springCtx.font = '10px sans-serif';
+            springCtx.textAlign = 'center';
+            for (let i = -2; i <= 2; i++) {
+                if (i === 0) continue;
+                const markX = equilibriumX + i * (w / 2 - wallX - massWidth - 20) / 2;
+                springCtx.beginPath();
+                springCtx.moveTo(markX, centerY + 55);
+                springCtx.lineTo(markX, centerY + 65);
+                springCtx.strokeStyle = 'rgba(255,255,255,0.2)';
+                springCtx.lineWidth = 1;
+                springCtx.stroke();
+                springCtx.fillText((i * state.A / 2).toFixed(0), markX, centerY + 77);
+            }
+
+            springCtx.restore();
+        }
+
+        // ============ RENDER GRAPH ============
+        function renderGraph() {
+            const rect = graphCanvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const dpr = window.devicePixelRatio || 1;
+
+            graphCtx.save();
+            graphCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            graphCtx.clearRect(0, 0, w, h);
+
+            const padding = { top: 20, right: 20, bottom: 30, left: 50 };
+            const plotW = w - padding.left - padding.right;
+            const plotH = h - padding.top - padding.bottom;
+
+            if (state.graphMode === 'phase') {
+                renderPhasePortrait(graphCtx, w, h, padding, plotW, plotH);
+            } else {
+                renderTimeGraph(graphCtx, w, h, padding, plotW, plotH);
+            }
+
+            graphCtx.restore();
+        }
+
+        function renderTimeGraph(ctx, w, h, padding, plotW, plotH) {
+            const isXT = state.graphMode === 'xt';
+            const timeWindow = 10; // seconds visible
+            const tEnd = state.time;
+            const tStart = Math.max(0, tEnd - timeWindow);
+
+            // Determine y range
+            const maxVal = state.A * state.omega * 1.2;
+            const yRange = isXT ? state.A * 1.3 : maxVal;
+
+            // Draw grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 10; i++) {
+                const x = padding.left + (i / 10) * plotW;
+                ctx.beginPath();
+                ctx.moveTo(x, padding.top);
+                ctx.lineTo(x, padding.top + plotH);
+                ctx.stroke();
+            }
+            for (let i = 0; i <= 6; i++) {
+                const y = padding.top + (i / 6) * plotH;
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(padding.left + plotW, y);
+                ctx.stroke();
+            }
+
+            // Draw axes
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 1;
+            // X axis (time)
+            ctx.beginPath();
+            ctx.moveTo(padding.left, padding.top + plotH / 2);
+            ctx.lineTo(padding.left + plotW, padding.top + plotH / 2);
+            ctx.stroke();
+            // Y axis
+            ctx.beginPath();
+            ctx.moveTo(padding.left, padding.top);
+            ctx.lineTo(padding.left, padding.top + plotH);
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('t (s)', padding.left + plotW / 2, h - 5);
+
+            ctx.save();
+            ctx.translate(12, padding.top + plotH / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText(isXT ? 'x' : 'v', 0, 0);
+            ctx.restore();
+
+            // Time labels
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '10px sans-serif';
+            for (let i = 0; i <= 5; i++) {
+                const t = tStart + (i / 5) * timeWindow;
+                const x = padding.left + (i / 5) * plotW;
+                ctx.fillText(t.toFixed(1), x, padding.top + plotH + 15);
+            }
+
+            // Y labels
+            ctx.textAlign = 'right';
+            for (let i = -2; i <= 2; i++) {
+                const val = i * yRange / 2;
+                const y = padding.top + plotH / 2 - (val / yRange) * (plotH / 2);
+                ctx.fillText(val.toFixed(0), padding.left - 5, y + 4);
+            }
+
+            // Draw curve
+            const color = isXT ? '#22d3ee' : '#fbbf24';
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+
+            const steps = Math.floor(plotW);
+            let started = false;
+
+            for (let i = 0; i <= steps; i++) {
+                const t = tStart + (i / steps) * timeWindow;
+                const val = isXT ? getPosition(t) : getVelocity(t);
+                const x = padding.left + (i / steps) * plotW;
+                const y = padding.top + plotH / 2 - (val / yRange) * (plotH / 2);
+
+                if (!started) {
+                    ctx.moveTo(x, y);
+                    started = true;
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+
+            // Draw current point
+            if (state.time >= tStart && state.time <= tEnd) {
+                const currentVal = isXT ? getPosition(state.time) : getVelocity(state.time);
+                const cx = padding.left + ((state.time - tStart) / timeWindow) * plotW;
+                const cy = padding.top + plotH / 2 - (currentVal / yRange) * (plotH / 2);
+
+                ctx.fillStyle = color;
+                ctx.shadowColor = color;
+                ctx.shadowBlur = 10;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+
+                // Vertical line to current position
+                ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([3, 3]);
+                ctx.beginPath();
+                ctx.moveTo(cx, padding.top);
+                ctx.lineTo(cx, padding.top + plotH);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+        }
+
+        function renderPhasePortrait(ctx, w, h, padding, plotW, plotH) {
+            const maxX = state.A * 1.3;
+            const maxV = state.A * state.omega * 1.3;
+
+            // Draw grid
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 10; i++) {
+                const x = padding.left + (i / 10) * plotW;
+                ctx.beginPath();
+                ctx.moveTo(x, padding.top);
+                ctx.lineTo(x, padding.top + plotH);
+                ctx.stroke();
+            }
+            for (let i = 0; i <= 6; i++) {
+                const y = padding.top + (i / 6) * plotH;
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(padding.left + plotW, y);
+                ctx.stroke();
+            }
+
+            // Draw axes
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(padding.left, padding.top + plotH / 2);
+            ctx.lineTo(padding.left + plotW, padding.top + plotH / 2);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(padding.left + plotW / 2, padding.top);
+            ctx.lineTo(padding.left + plotW / 2, padding.top + plotH);
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('x', padding.left + plotW - 10, padding.top + plotH / 2 - 8);
+            ctx.save();
+            ctx.translate(padding.left + plotW / 2 + 15, padding.top + 10);
+            ctx.fillText('v', 0, 0);
+            ctx.restore();
+
+            // Draw theoretical ellipse (if no damping)
+            if (state.damping === 0) {
+                ctx.strokeStyle = 'rgba(129, 140, 248, 0.2)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                const cx = padding.left + plotW / 2;
+                const cy = padding.top + plotH / 2;
+                const rx = (state.A / maxX) * (plotW / 2);
+                const ry = (state.A * state.omega / maxV) * (plotH / 2);
+                ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            // Draw phase trail
+            if (state.phaseTrail.length > 1) {
+                for (let i = 1; i < state.phaseTrail.length; i++) {
+                    const p0 = state.phaseTrail[i - 1];
+                    const p1 = state.phaseTrail[i];
+                    const alpha = (i / state.phaseTrail.length) * 0.8;
+
+                    const x0 = padding.left + plotW / 2 + (p0.x / maxX) * (plotW / 2);
+                    const y0 = padding.top + plotH / 2 - (p0.v / maxV) * (plotH / 2);
+                    const x1 = padding.left + plotW / 2 + (p1.x / maxX) * (plotW / 2);
+                    const y1 = padding.top + plotH / 2 - (p1.v / maxV) * (plotH / 2);
+
+                    ctx.strokeStyle = `rgba(129, 140, 248, ${alpha})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(x0, y0);
+                    ctx.lineTo(x1, y1);
+                    ctx.stroke();
+                }
+            }
+
+            // Draw current point
+            const curX = getPosition(state.time);
+            const curV = getVelocity(state.time);
+            const px = padding.left + plotW / 2 + (curX / maxX) * (plotW / 2);
+            const py = padding.top + plotH / 2 - (curV / maxV) * (plotH / 2);
+
+            ctx.fillStyle = '#818cf8';
+            ctx.shadowColor = '#818cf8';
+            ctx.shadowBlur = 15;
+            ctx.beginPath();
+            ctx.arc(px, py, 6, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Direction arrow on trail
+            if (state.phaseTrail.length > 2) {
+                const last = state.phaseTrail[state.phaseTrail.length - 1];
+                const prev = state.phaseTrail[state.phaseTrail.length - 3];
+                const dx = last.x - prev.x;
+                const dv = last.v - prev.v;
+                const angle = Math.atan2(-dv, dx);
+
+                ctx.fillStyle = 'rgba(129, 140, 248, 0.6)';
+                ctx.save();
+                ctx.translate(px, py);
+                ctx.rotate(angle);
+                ctx.beginPath();
+                ctx.moveTo(12, 0);
+                ctx.lineTo(6, -4);
+                ctx.lineTo(6, 4);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // ============ UPDATE ============
+        function update(timestamp) {
+            if (!state.playing) return;
+
+            if (state.lastTimestamp === null) {
+                state.lastTimestamp = timestamp;
+            }
+
+            const dt = (timestamp - state.lastTimestamp) / 1000;
+            state.lastTimestamp = timestamp;
+
+            // Cap dt to prevent jumps
+            const cappedDt = Math.min(dt, 0.05);
+            state.time += cappedDt;
+
+            // Update trail for time graphs
+            const x = getPosition(state.time);
+            const v = getVelocity(state.time);
+            state.trail.push({ t: state.time, x: x, v: v });
+            if (state.trail.length > state.maxTrail) {
+                state.trail.shift();
+            }
+
+            // Update phase trail
+            state.phaseTrail.push({ x: x, v: v });
+            if (state.phaseTrail.length > state.maxPhaseTrail) {
+                state.phaseTrail.shift();
+            }
+        }
+
+        // ============ UPDATE UI ============
+        function updateUI() {
+            const x = getPosition(state.time);
+            const v = getVelocity(state.time);
+            const a = getAcceleration(state.time);
+
+            // Scale for display (pretend units)
+            const xMeters = x / 100;
+            const vMeters = v / 100;
+            const aMeters = a / 100;
+
+            timeDisplay.textContent = state.time.toFixed(3) + ' s';
+            posDisplay.textContent = xMeters.toFixed(3) + ' m';
+            velDisplay.textContent = vMeters.toFixed(3) + ' m/s';
+            accDisplay.textContent = aMeters.toFixed(3) + ' m/s²';
+
+            // Energy (assume m=1, k=ω²)
+            const ke = 0.5 * vMeters * vMeters;
+            const pe = 0.5 * state.omega * state.omega * xMeters * xMeters;
+            const te = ke + pe;
+            const maxE = 0.5 * state.omega * state.omega * (state.A / 100) * (state.A / 100);
+
+            keDisplay.textContent = ke.toFixed(3) + ' J';
+            peDisplay.textContent = pe.toFixed(3) + ' J';
+            teDisplay.textContent = te.toFixed(3) + ' J';
+
+            keBar.style.width = (maxE > 0 ? (ke / maxE * 100) : 0) + '%';
+            peBar.style.width = (maxE > 0 ? (pe / maxE * 100) : 0) + '%';
+            teBar.style.width = (maxE > 0 ? (te / maxE * 100) : 0) + '%';
+
+            // Update formula display
+            const A = state.A;
+            const w = state.omega;
+            const phi = state.phi;
+            const phiStr = phi === 0 ? '' : (phi > 0 ? ` + ${phi.toFixed(2)}` : ` - ${Math.abs(phi).toFixed(2)}`);
+
+            currentFormula.innerHTML = `\\( x(t) = ${A}\\cos(${w.toFixed(1)}t${phiStr}) \\)`;
+            currentVelocity.innerHTML = `\\( v(t) = -${(A * w).toFixed(0)}\\sin(${w.toFixed(1)}t${phiStr}) \\)`;
+
+            // Re-render MathJax if available
+            if (window.MathJax) {
+                MathJax.typesetPromise && MathJax.typesetPromise([currentFormula, currentVelocity]);
+            }
+        }
+
+        // ============ RENDER LOOP ============
+        function render() {
+            renderSpring();
+            renderGraph();
+            updateUI();
+        }
+
+        function gameLoop(timestamp) {
+            update(timestamp);
+            render();
+            state.animId = requestAnimationFrame(gameLoop);
+        }
+
+        // ============ CONTROLS ============
+        btnPlay.addEventListener('click', () => {
+            state.playing = true;
+            state.lastTimestamp = null;
+            btnPlay.classList.add('hidden');
+            btnPause.classList.remove('hidden');
+        });
+
+        btnPause.addEventListener('click', () => {
+            state.playing = false;
+            btnPause.classList.add('hidden');
+            btnPlay.classList.remove('hidden');
+        });
+
+        btnReset.addEventListener('click', () => {
+            state.playing = false;
+            state.time = 0;
+            state.lastTimestamp = null;
+            state.trail = [];
+            state.phaseTrail = [];
+            btnPause.classList.add('hidden');
+            btnPlay.classList.remove('hidden');
+        });
+
+        // Slider handlers
+        ampSlider.addEventListener('input', (e) => {
+            state.A = parseInt(e.target.value);
+            ampValue.textContent = state.A + ' px';
+        });
+
+        omegaSlider.addEventListener('input', (e) => {
+            state.omega = parseInt(e.target.value) / 10;
+            omegaValue.textContent = state.omega.toFixed(1) + ' rad/s';
+        });
+
+        phaseSlider.addEventListener('input', (e) => {
+            const deg = parseInt(e.target.value);
+            state.phi = deg * Math.PI / 180;
+            phaseValue.textContent = deg + '°';
+        });
+
+        dampSlider.addEventListener('input', (e) => {
+            state.damping = parseInt(e.target.value) / 100;
+            dampValue.textContent = state.damping.toFixed(2);
+        });
+
+        // Tab buttons
+        function setActiveTab(mode) {
+            state.graphMode = mode;
+            [tabXT, tabVT, tabPhase].forEach(t => t.classList.remove('tab-active'));
+            if (mode === 'xt') tabXT.classList.add('tab-active');
+            else if (mode === 'vt') tabVT.classList.add('tab-active');
+            else tabPhase.classList.add('tab-active');
+        }
+
+        tabXT.addEventListener('click', () => setActiveTab('xt'));
+        tabVT.addEventListener('click', () => setActiveTab('vt'));
+        tabPhase.addEventListener('click', () => setActiveTab('phase'));
+
+        // ============ INIT ============
+        function init() {
+            // Set canvas sizes
+            resizeCanvas(springCanvas);
+            resizeCanvas(graphCanvas);
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                resizeCanvas(springCanvas);
+                resizeCanvas(graphCanvas);
+            });
+
+            // Start animation loop
+            state.animId = requestAnimationFrame(gameLoop);
+        }
+
+        // Wait for DOM and fonts
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+
+    <!-- MathJax for formula rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</body>
+</html>
+```

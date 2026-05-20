@@ -1,3 +1,12 @@
+/**
+ * ui/input.tsx - 输入框组件
+ *
+ * 基础文本输入框组件，支持所有 HTML input 类型。
+ * 使用 Tailwind CSS 实现焦点环、禁用状态和文件上传样式。
+ * 支持通过 className 自定义样式。
+ *
+ * @exports Input - 输入框组件
+ */
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';

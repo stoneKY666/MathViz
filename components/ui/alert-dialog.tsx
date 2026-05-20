@@ -1,3 +1,12 @@
+/**
+ * ui/alert-dialog.tsx - 确认对话框组件
+ *
+ * 基于 Radix UI AlertDialog 原语封装的确认对话框组件。
+ * 用于需要用户确认的操作（如删除、重置等），提供标题、描述、确认和取消按钮。
+ * 支持 AlertDialogTrigger、AlertDialogContent、AlertDialogHeader、
+ * AlertDialogFooter、AlertDialogTitle、AlertDialogDescription、
+ * AlertDialogAction、AlertDialogCancel 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

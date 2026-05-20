@@ -1,3 +1,16 @@
+/**
+ * quality-guard.ts - HTML 质量校验器
+ *
+ * 对生成的交互式 HTML 执行多维度质量检查：
+ *   1. 结构完整性：检查 DOCTYPE、html、head、body 标签
+ *   2. 安全性：阻止 eval()、new Function() 等危险代码执行
+ *   3. 外部脚本白名单：仅允许 Tailwind CDN 和 KaTeX CDN
+ *   4. 基本有效性：检查是否包含交互元素或动画
+ * 返回校验结果（valid、errors、warnings），用于决定是否需要自动修复。
+ *
+ * @exports validateInteractiveHtml - 执行 HTML 质量校验
+ */
+
 import type { InteractiveValidationResult } from './types';
 
 export function validateInteractiveHtml(html: string): InteractiveValidationResult {

@@ -1,3 +1,13 @@
+/**
+ * ui/button.tsx - 按钮组件
+ *
+ * 基于 class-variance-authority 实现变体样式的按钮组件。
+ * 支持多种视觉变体（default、destructive、outline、secondary、ghost、link）
+ * 和多种尺寸变体（default、sm、lg、icon）。
+ * 通过 asChild 支持渲染为子元素（如链接）。
+ *
+ * @exports Button - 按钮组件
+ */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Slot } from 'radix-ui';

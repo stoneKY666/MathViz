@@ -1,3 +1,13 @@
+/**
+ * settings/utils.ts - 设置面板工具函数
+ *
+ * 提供设置界面使用的格式化工具函数。
+ * formatContextWindow 将模型上下文窗口大小格式化为人类可读的字符串
+ * （如 128K、1.0M），便于在模型选择器和配置面板中显示。
+ *
+ * @exports formatContextWindow - 格式化上下文窗口大小
+ */
+
 export function formatContextWindow(size?: number): string {
   if (!size) return '-';
 

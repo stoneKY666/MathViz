@@ -1,3 +1,11 @@
+/**
+ * ui/input-group.tsx - 输入框组组件
+ *
+ * 将输入框与前后缀元素（图标、按钮等）组合为一个视觉整体。
+ * 基于 class-variance-authority 实现变体样式，支持不同尺寸。
+ * 提供 InputGroup、InputGroupInput、InputGroupAddon、InputGroupText、
+ * InputGroupButton 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

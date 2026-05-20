@@ -1,3 +1,15 @@
+/**
+ * prompt-templates.ts - Prompt 模板定义
+ *
+ * 定义交互式可视化生成管线各阶段的 LLM prompt 模板。
+ * 包含三组模板：
+ *   1. scientificModel — 科学建模模板（system + user），指导 LLM 生成结构化 JSON
+ *      约束（core_formulas、mechanism、constraints、forbidden_errors）
+ *   2. interactiveHtml — HTML 生成模板（system + user），指导 LLM 生成完整交互式页面
+ *   3. repair — 修复模板（system + user），指导 LLM 根据错误诊断修复 HTML
+ * 所有模板均支持变量占位符（如 {{conceptName}}），由 prompt-builder 填充。
+ */
+
 export const scientificModelSystem = `# Scientific Modeling Expert
 
 You are a scientific education expert. Output strict JSON model constraints for interactive visualization.

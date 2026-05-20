@@ -1,3 +1,11 @@
+/**
+ * ui/select.tsx - 下拉选择组件
+ *
+ * 基于 Radix UI Select 原语封装的下拉选择组件。
+ * 支持选项分组、滚动、键盘导航和无障碍访问。
+ * 提供 Select、SelectTrigger、SelectContent、SelectItem、SelectValue、
+ * SelectGroup、SelectLabel、SelectSeparator 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

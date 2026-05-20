@@ -1,0 +1,708 @@
+{
+  "block": "M1",
+  "timestamp": "2026-04-23T10:05:27.155Z",
+  "model": "mimo-v2.5-pro",
+  "total": 50,
+  "completed": 50,
+  "successCount": 48,
+  "partialCount": 0,
+  "errorCount": 2,
+  "results": [
+    {
+      "concept": {
+        "name": "简谐运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 37372,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 134.02
+    },
+    {
+      "concept": {
+        "name": "抛体运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 36297,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 129.085
+    },
+    {
+      "concept": {
+        "name": "电场线",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 31238,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 412.292
+    },
+    {
+      "concept": {
+        "name": "电磁感应",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 31653,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 145.707
+    },
+    {
+      "concept": {
+        "name": "光的干涉",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 34423,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 135.768
+    },
+    {
+      "concept": {
+        "name": "万有引力",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 26503,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 106.987
+    },
+    {
+      "concept": {
+        "name": "驻波",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 27406,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 101.673
+    },
+    {
+      "concept": {
+        "name": "多普勒效应",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 34006,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 140.347
+    },
+    {
+      "concept": {
+        "name": "热传导",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 33636,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 128.681
+    },
+    {
+      "concept": {
+        "name": "角动量守恒",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 34634,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 416.276
+    },
+    {
+      "concept": {
+        "name": "二次函数图像",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 47899,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 207.099
+    },
+    {
+      "concept": {
+        "name": "三角函数",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 30080,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 136.108
+    },
+    {
+      "concept": {
+        "name": "极坐标",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 26928,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 100.151
+    },
+    {
+      "concept": {
+        "name": "傅里叶级数",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 37572,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 135.972
+    },
+    {
+      "concept": {
+        "name": "矩阵变换",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 37976,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 151.595
+    },
+    {
+      "concept": {
+        "name": "泰勒展开",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 38218,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 153.261
+    },
+    {
+      "concept": {
+        "name": "梯度场",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 32640,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 133.485
+    },
+    {
+      "concept": {
+        "name": "分形",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 31977,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 129.918
+    },
+    {
+      "concept": {
+        "name": "向量场",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 30636,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 121.063
+    },
+    {
+      "concept": {
+        "name": "拓扑变换",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 24605,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 673.643
+    },
+    {
+      "concept": {
+        "name": "正态分布",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 29305,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 115.158
+    },
+    {
+      "concept": {
+        "name": "中心极限定理",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 35661,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 136.788
+    },
+    {
+      "concept": {
+        "name": "贝叶斯定理",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 40128,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 171.644
+    },
+    {
+      "concept": {
+        "name": "马尔可夫链",
+        "subject": "统计"
+      },
+      "status": "error",
+      "error": "Empty response after 3 attempts",
+      "duration": 855.297
+    },
+    {
+      "concept": {
+        "name": "泊松分布",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 36214,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 152.408
+    },
+    {
+      "concept": {
+        "name": "假设检验",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 37347,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 424.559
+    },
+    {
+      "concept": {
+        "name": "回归分析",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 35380,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 143.274
+    },
+    {
+      "concept": {
+        "name": "蒙特卡洛模拟",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 31680,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 136.12
+    },
+    {
+      "concept": {
+        "name": "协方差矩阵",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 30966,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 134.534
+    },
+    {
+      "concept": {
+        "name": "置信区间",
+        "subject": "统计"
+      },
+      "status": "success",
+      "htmlLength": 36405,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 143.819
+    },
+    {
+      "concept": {
+        "name": "冒泡排序",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 35903,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": [
+          "No canvas/SVG"
+        ]
+      },
+      "duration": 133.302
+    },
+    {
+      "concept": {
+        "name": "二叉树遍历",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 32619,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 118.394
+    },
+    {
+      "concept": {
+        "name": "Dijkstra算法",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 40326,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 179.019
+    },
+    {
+      "concept": {
+        "name": "哈夫曼编码",
+        "subject": "计算机"
+      },
+      "status": "error",
+      "error": "Empty response after 3 attempts",
+      "duration": 777.143
+    },
+    {
+      "concept": {
+        "name": "快速排序",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 33544,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": [
+          "No canvas/SVG"
+        ]
+      },
+      "duration": 392.823
+    },
+    {
+      "concept": {
+        "name": "动态规划",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 57274,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 447.382
+    },
+    {
+      "concept": {
+        "name": "递归",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 36793,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 594.68
+    },
+    {
+      "concept": {
+        "name": "图的广度优先搜索",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 40376,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 132.102
+    },
+    {
+      "concept": {
+        "name": "堆排序",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 43034,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 154.036
+    },
+    {
+      "concept": {
+        "name": "KMP字符串匹配",
+        "subject": "计算机"
+      },
+      "status": "success",
+      "htmlLength": 35618,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": [
+          "No canvas/SVG"
+        ]
+      },
+      "duration": 134.685
+    },
+    {
+      "concept": {
+        "name": "化学平衡",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 42700,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 156.113
+    },
+    {
+      "concept": {
+        "name": "分子运动",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 31157,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 100.8
+    },
+    {
+      "concept": {
+        "name": "酸碱滴定曲线",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 38821,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 4673.622
+    },
+    {
+      "concept": {
+        "name": "分子轨道理论",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 42559,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 171.065
+    },
+    {
+      "concept": {
+        "name": "电化学电池",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 40202,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 143.473
+    },
+    {
+      "concept": {
+        "name": "化学反应速率",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 50573,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 183.21
+    },
+    {
+      "concept": {
+        "name": "晶体结构",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 48140,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 149.642
+    },
+    {
+      "concept": {
+        "name": "气体扩散",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 29240,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 112.603
+    },
+    {
+      "concept": {
+        "name": "电子云",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 26504,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 103.245
+    },
+    {
+      "concept": {
+        "name": "相图",
+        "subject": "化学"
+      },
+      "status": "success",
+      "htmlLength": 34294,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 125.848
+    }
+  ]
+}

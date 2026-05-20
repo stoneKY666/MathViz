@@ -1,3 +1,14 @@
+/**
+ * ui/dropdown-menu.tsx - 下拉菜单组件
+ *
+ * 基于 Radix UI DropdownMenu 原语封装的下拉菜单组件。
+ * 支持子菜单、复选项、单选项、分隔线、快捷键提示等菜单元素。
+ * 提供 DropdownMenu、DropdownMenuTrigger、DropdownMenuContent、DropdownMenuItem、
+ * DropdownMenuCheckboxItem、DropdownMenuRadioItem、DropdownMenuLabel、
+ * DropdownMenuSeparator、DropdownMenuShortcut、DropdownMenuGroup、
+ * DropdownMenuPortal、DropdownMenuSub、DropdownMenuSubContent、DropdownMenuSubTrigger、
+ * DropdownMenuRadioGroup 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

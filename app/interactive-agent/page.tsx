@@ -1,3 +1,16 @@
+/**
+ * interactive-agent/page.tsx - 交互式可视化生成器主页面
+ *
+ * 应用的核心页面（客户端组件），提供完整的数学/科学可视化生成界面。
+ * 功能：
+ *   1. 用户输入概念名称、概述、学科、设计思路等参数
+ *   2. 通过 SSE（Server-Sent Events）流式调用后端 /api/interactive/generate
+ *   3. 实时展示生成进度（科学建模 → HTML 生成 → 质量校验）
+ *   4. 使用 iframe 沙盒安全预览生成的交互式 HTML 动画
+ *   5. 集成设置面板，支持模型选择和提供商配置
+ * 状态管理：使用 Zustand（useSettingsStore）持久化用户偏好。
+ * UI 组件：基于 shadcn/ui 组件库，包含数学符号浮动背景动画。
+ */
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';

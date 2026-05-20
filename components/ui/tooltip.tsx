@@ -1,3 +1,11 @@
+/**
+ * ui/tooltip.tsx - 工具提示组件
+ *
+ * 基于 Radix UI Tooltip 原语封装的工具提示组件。
+ * 鼠标悬停在触发元素上时显示简短的文字说明。
+ * 支持自定义延迟、定位和动画。
+ * 提供 Tooltip、TooltipTrigger、TooltipContent、TooltipProvider 四个组合组件。
+ */
 'use client';
 
 import * as React from 'react';

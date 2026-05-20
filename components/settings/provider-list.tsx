@@ -1,3 +1,15 @@
+/**
+ * settings/provider-list.tsx - 提供商列表组件
+ *
+ * 展示所有可用 AI 提供商的侧边栏列表。
+ * 每个提供商显示图标、名称和状态标识：
+ *   - 服务端配置标记（服务器图标）
+ *   - 已配置 API Key 标记（勾选图标）
+ *   - 未配置状态（灰色显示）
+ * 支持点击选中提供商查看详情，以及添加新提供商的入口。
+ *
+ * @exports ProviderList - 提供商列表组件
+ */
 'use client';
 
 import { Button } from '@/components/ui/button';

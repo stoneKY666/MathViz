@@ -1,3 +1,17 @@
+/**
+ * settings/model-edit-dialog.tsx - 模型编辑对话框
+ *
+ * 提供编辑单个模型配置的 UI 对话框。
+ * 用户可以：
+ *   1. 修改模型 ID 和显示名称
+ *   2. 配置上下文窗口和输出窗口大小
+ *   3. 启用/禁用模型能力（流式传输、工具调用、视觉、思考）
+ *   4. 测试模型连通性
+ *   5. 删除自定义模型
+ * 配置变更实时保存到 Zustand 设置存储。
+ *
+ * @exports ModelEditDialog - 模型编辑对话框组件
+ */
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';

@@ -1,3 +1,10 @@
+/**
+ * ui/hover-card.tsx - 悬浮卡片组件
+ *
+ * 基于 Radix UI HoverCard 原语封装的悬浮提示卡片组件。
+ * 鼠标悬停在触发元素上时显示富内容卡片，常用于用户头像、链接预览等场景。
+ * 提供 HoverCard、HoverCardTrigger、HoverCardContent 三个组合组件。
+ */
 'use client';
 
 import * as React from 'react';

@@ -1,3 +1,17 @@
+/**
+ * @file api-response.ts
+ * @description API 统一响应格式工具函数
+ *
+ * 提供标准化的 API 成功/错误响应构造函数，确保所有 API 路由返回一致的 JSON 结构。
+ * 错误响应包含错误码（errorCode）、错误消息和可选详情；成功响应自动包裹 { success: true }。
+ *
+ * @exports API_ERROR_CODES - 错误码常量枚举
+ * @exports ApiErrorCode - 错误码类型
+ * @exports ApiErrorBody - 错误响应体接口
+ * @exports apiError - 构造错误响应的工具函数
+ * @exports apiSuccess - 构造成功响应的工具函数
+ */
+
 import { NextResponse } from 'next/server';
 
 export const API_ERROR_CODES = {

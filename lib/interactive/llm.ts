@@ -1,3 +1,16 @@
+/**
+ * llm.ts - LLM 调用封装
+ *
+ * 封装 Vercel AI SDK 的 generateText 调用，提供统一的 LLM 调用接口。
+ * 功能：
+ *   1. 通过 resolveModel 解析模型配置并创建 LanguageModel 实例
+ *   2. 从环境变量自动解析服务商 API Key（{PROVIDER}_API_KEY、{PROVIDER}_BASE_URL）
+ *   3. 设置 5 分钟超时（DEFAULT_TIMEOUT = 300000ms）
+ *   4. 统一错误处理，抛出 InteractiveAgentError
+ *
+ * @exports callLlmWithModelConfig - 使用指定模型配置调用 LLM
+ */
+
 import { generateText } from 'ai';
 import { resolveModel } from '@/lib/server/resolve-model';
 import type { ModelConfig } from './types';

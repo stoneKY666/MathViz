@@ -1,4 +1,21 @@
 /**
+ * providers.ts - 统一的 AI 服务商配置与模型工厂
+ *
+ * 通过 Vercel AI SDK 集成 11 个内置 AI 服务商（OpenAI、Anthropic、Google、
+ * GLM、Qwen、DeepSeek、Kimi、MiniMax、硅基流动、豆包、Grok），并支持自定义服务商。
+ * 每个服务商定义了模型列表、上下文窗口、输出窗口及思考能力等元信息。
+ * getModel() 函数根据配置创建对应的 LanguageModel 实例，支持自定义 API Key、
+ * Base URL 和代理设置。对 OpenAI 兼容服务商注入思考参数的 fetch 包装器。
+ *
+ * @exports PROVIDERS - 内置服务商注册表
+ * @exports getModel - 根据配置创建语言模型实例
+ * @exports parseModelString - 解析 "providerId:modelId" 格式的模型字符串
+ * @exports getAllModels - 获取所有可用模型列表
+ * @exports getProvider - 根据 ID 获取服务商配置
+ * @exports getModelInfo - 获取模型详细信息
+ */
+
+/**
  * Unified AI Provider Configuration
  *
  * Supports multiple AI providers through Vercel AI SDK:

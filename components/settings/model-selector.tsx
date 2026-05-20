@@ -1,3 +1,17 @@
+/**
+ * settings/model-selector.tsx - 模型选择器组件
+ *
+ * 提供模型搜索和选择的下拉组件。
+ * 功能：
+ *   1. 按服务商分组展示所有可用模型
+ *   2. 支持模型名称搜索过滤
+ *   3. 显示模型能力标签（流式、工具、视觉、思考等）
+ *   4. 区分服务端配置模型和本地配置模型
+ *   5. 显示上下文窗口大小
+ * 使用 useSettingsStore 获取当前选择，useI18n 实现国际化。
+ *
+ * @exports ModelSelector - 模型选择器组件
+ */
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';

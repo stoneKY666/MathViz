@@ -1,3 +1,16 @@
+/**
+ * api/interactive/generate/route.ts - 交互式可视化生成 API
+ *
+ * POST /api/interactive/generate — SSE 流式生成端点。
+ * 处理流程：
+ *   1. 解析请求体（概念名称、概述、学科、模型配置等）
+ *   2. 通过 resolveModel 解析模型配置（支持 header 传递或请求体指定）
+ *   3. 调用 generateInteractivePage 执行多阶段生成管线
+ *   4. 以 SSE 格式流式返回事件：heartbeat（15s）、start、progress、result、error
+ * 超时限制：maxDuration = 300 秒（5 分钟）。
+ * 导出：POST 处理函数。
+ */
+
 import { NextRequest } from 'next/server';
 import { parseModelString } from '@/lib/ai/providers';
 import { resolveModel, resolveModelFromHeaders } from '@/lib/server/resolve-model';

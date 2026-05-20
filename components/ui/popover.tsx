@@ -1,3 +1,11 @@
+/**
+ * ui/popover.tsx - 弹出层组件
+ *
+ * 基于 Radix UI Popover 原语封装的弹出层组件。
+ * 点击触发元素时显示浮动内容面板，支持自定义定位和动画。
+ * 提供 Popover、PopoverTrigger、PopoverContent 三个组合组件。
+ * 用于日期选择、颜色选择、配置面板等场景。
+ */
 'use client';
 
 import * as React from 'react';

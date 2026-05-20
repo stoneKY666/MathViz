@@ -1,3 +1,14 @@
+/**
+ * @file model-config.ts
+ * @description 客户端模型配置获取工具
+ *
+ * 从 Zustand 设置 store 中读取当前选中的模型配置，并在 store 中缺少 API 密钥时
+ * 自动回退到 localStorage 直接读取，确保客户端 API 调用始终能获取到完整配置。
+ * 解析优先级：Zustand store > localStorage > 提供商默认值。
+ *
+ * @exports getCurrentModelConfig - 获取当前模型的完整配置（providerId、modelId、apiKey、baseUrl 等）
+ */
+
 import { useSettingsStore } from '@/lib/store/settings';
 import { getProvider, type ProviderId } from '@/lib/ai/providers';
 

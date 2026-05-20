@@ -1,3 +1,11 @@
+/**
+ * ui/tabs.tsx - 标签页组件
+ *
+ * 基于 Radix UI Tabs 原语封装的标签页切换组件。
+ * 支持 default 和 underline 两种视觉变体。
+ * 提供 Tabs、TabsList、TabsTrigger、TabsContent 四个组合组件。
+ * 用于设置对话框中的面板切换等场景。
+ */
 'use client';
 
 import * as React from 'react';

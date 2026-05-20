@@ -1,3 +1,18 @@
+/**
+ * @file provider-config.ts
+ * @description 服务端 LLM 提供商配置管理
+ *
+ * 从环境变量中读取各 LLM 提供商的 API 密钥、基础 URL 和模型列表，
+ * 支持 11 个内置提供商（OpenAI、Anthropic、Google、DeepSeek 等）。
+ * 环境变量命名规则：{PREFIX}_API_KEY、{PREFIX}_BASE_URL、{PREFIX}_MODELS。
+ * 使用单例模式缓存配置，避免重复解析环境变量。
+ *
+ * @exports getServerProviders - 获取所有已配置的服务端提供商信息（不含 API 密钥）
+ * @exports resolveApiKey - 解析 API 密钥（客户端优先，回退到服务端环境变量）
+ * @exports resolveBaseUrl - 解析基础 URL（客户端 > 服务端 > 提供商默认值）
+ * @exports getServerDefaultModel - 获取 DEFAULT_MODEL 环境变量
+ */
+
 import { createLogger } from '@/lib/logger';
 import { PROVIDERS } from '@/lib/ai/providers';
 

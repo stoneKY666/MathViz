@@ -1,3 +1,12 @@
+/**
+ * ui/alert.tsx - 警告提示组件
+ *
+ * 基于 class-variance-authority 实现变体样式的通知提示组件。
+ * 支持 default 和 destructive 两种视觉变体。
+ * 提供 Alert、AlertTitle、AlertDescription 三个组合组件。
+ *
+ * @exports Alert, AlertTitle, AlertDescription - 警告提示组件
+ */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 

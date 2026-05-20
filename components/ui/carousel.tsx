@@ -1,3 +1,11 @@
+/**
+ * ui/carousel.tsx - 轮播组件
+ *
+ * 基于 Embla Carousel 封装的轮播/走马灯组件。
+ * 支持自动播放、循环滚动、键盘导航等特性。
+ * 提供 Carousel、CarouselContent、CarouselItem、CarouselPrevious、CarouselNext
+ * 等组合组件，通过 Context 共享轮播状态。
+ */
 'use client';
 
 import * as React from 'react';

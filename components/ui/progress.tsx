@@ -1,3 +1,10 @@
+/**
+ * ui/progress.tsx - 进度条组件
+ *
+ * 基于 Radix UI Progress 原语封装的进度条组件。
+ * 显示任务完成进度，支持自定义样式和动画。
+ * 用于文件上传、数据加载等需要展示进度的场景。
+ */
 'use client';
 
 import * as React from 'react';

@@ -1,0 +1,272 @@
+{
+  "block": "M2",
+  "timestamp": "2026-04-23T10:45:16.608Z",
+  "model": "mimo-v2.5-pro",
+  "total": 20,
+  "completed": 20,
+  "successCount": 16,
+  "partialCount": 0,
+  "errorCount": 4,
+  "results": [
+    {
+      "concept": {
+        "name": "简谐运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 36065,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 114.681
+    },
+    {
+      "concept": {
+        "name": "抛体运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 43359,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 133.578
+    },
+    {
+      "concept": {
+        "name": "电场线",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 28033,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 91.131
+    },
+    {
+      "concept": {
+        "name": "电磁感应",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 32458,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 112.611
+    },
+    {
+      "concept": {
+        "name": "光的干涉",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 30473,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 108.427
+    },
+    {
+      "concept": {
+        "name": "万有引力",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 34299,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 118.501
+    },
+    {
+      "concept": {
+        "name": "驻波",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 29229,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 89.668
+    },
+    {
+      "concept": {
+        "name": "多普勒效应",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 31816,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 325.316
+    },
+    {
+      "concept": {
+        "name": "热传导",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 32466,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 109.914
+    },
+    {
+      "concept": {
+        "name": "角动量守恒",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 37928,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 122.393
+    },
+    {
+      "concept": {
+        "name": "二次函数图像",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 38943,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 127.305
+    },
+    {
+      "concept": {
+        "name": "三角函数",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 36032,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 119.134
+    },
+    {
+      "concept": {
+        "name": "极坐标",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 32401,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 102.194
+    },
+    {
+      "concept": {
+        "name": "傅里叶级数",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 29430,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 102.454
+    },
+    {
+      "concept": {
+        "name": "矩阵变换",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 27199,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 87.044
+    },
+    {
+      "concept": {
+        "name": "泰勒展开",
+        "subject": "数学"
+      },
+      "status": "success",
+      "htmlLength": 36443,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 121.093
+    },
+    {
+      "concept": {
+        "name": "梯度场",
+        "subject": "数学"
+      },
+      "status": "error",
+      "error": "Connection error.",
+      "duration": 174.536
+    },
+    {
+      "concept": {
+        "name": "分形",
+        "subject": "数学"
+      },
+      "status": "error",
+      "error": "Connection error.",
+      "duration": 55.95
+    },
+    {
+      "concept": {
+        "name": "向量场",
+        "subject": "数学"
+      },
+      "status": "error",
+      "error": "Connection error.",
+      "duration": 56.147
+    },
+    {
+      "concept": {
+        "name": "拓扑变换",
+        "subject": "数学"
+      },
+      "status": "error",
+      "error": "Connection error.",
+      "duration": 55.949
+    }
+  ]
+}

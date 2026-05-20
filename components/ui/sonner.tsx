@@ -1,3 +1,11 @@
+/**
+ * ui/sonner.tsx - Toast 通知组件
+ *
+ * 基于 Sonner 库封装的全局 Toast 通知组件。
+ * 自动适配当前主题（亮色/暗色），支持多种通知类型。
+ * 通过 toast() 函数触发通知，无需手动管理状态。
+ * 在应用根组件中挂载 Toaster 即可全局使用。
+ */
 'use client';
 
 import { useTheme } from 'next-themes';

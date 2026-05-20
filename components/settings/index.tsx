@@ -1,3 +1,15 @@
+/**
+ * settings/index.tsx - 设置对话框入口组件
+ *
+ * 设置功能的顶层组件，渲染一个可切换面板的对话框。
+ * 左侧导航支持切换不同设置面板：
+ *   - 通用设置（GeneralSettings）：模型选择、提供商配置
+ *   - Agent 设置（AgentSettings）：Agent 行为参数
+ * 使用 useSettingsStore 管理对话框状态，useI18n 实现国际化。
+ * 支持通过 defaultSection 属性指定默认打开的面板。
+ *
+ * @exports SettingsDialog - 设置对话框组件
+ */
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';

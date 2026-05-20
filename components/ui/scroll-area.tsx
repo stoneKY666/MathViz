@@ -1,3 +1,10 @@
+/**
+ * ui/scroll-area.tsx - 滚动区域组件
+ *
+ * 基于 Radix UI ScrollArea 原语封装的自定义滚动区域组件。
+ * 替代浏览器默认滚动条，提供更美观的自定义滚动条样式。
+ * 支持水平和垂直滚动，提供 ScrollArea 和 ScrollBar 两个组合组件。
+ */
 'use client';
 
 import * as React from 'react';

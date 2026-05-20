@@ -1,3 +1,10 @@
+/**
+ * ui/card.tsx - 卡片容器组件
+ *
+ * 通用卡片布局组件，包含标题区、内容区和底部区。
+ * 提供 Card、CardHeader、CardTitle、CardDescription、CardContent、CardFooter
+ * 六个组合组件，支持自定义样式类名。
+ */
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';

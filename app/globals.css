@@ -1,3 +1,10 @@
+/**
+ * globals.css - 全局样式表
+ *
+ * 定义应用的全局 CSS 变量、主题配置和基础样式。
+ * 使用 Tailwind CSS v4 的 @import 语法引入框架，
+ * 通过 @custom-variant 和 @theme 指令自定义暗色模式和设计令牌。
+ */
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));

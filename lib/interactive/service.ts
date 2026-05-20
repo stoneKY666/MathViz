@@ -1,3 +1,24 @@
+/**
+ * service.ts - 交互式可视化生成管线核心服务
+ *
+ * 编排多阶段生成流水线，将概念名称转换为完整的交互式 HTML 页面。
+ * 处理流程：
+ *   1. 输入规范化 — normalizeInput 补全默认值，inferConceptCategory 通过正则推断
+ *      概念类别（physics/math/chemistry/cs/data/general），defaultDesignIdea 根据
+ *      类别生成差异化的可视化策略
+ *   2. 科学建模 — buildScientificModel 调用 LLM 生成结构化 JSON 约束
+ *      （core_formulas、mechanism、constraints、forbidden_errors）
+ *   3. HTML 生成 — generateHtmlFromModel 基于科学约束调用 LLM 生成完整 HTML
+ *   4. 后处理 — 通过 deps.postProcessHtml 执行 LaTeX 转换和 KaTeX 注入
+ *   5. 质量校验 — validateInteractiveHtml 检查结构完整性、安全性
+ *   6. 自动修复 — 最多 MAX_REPAIR_ATTEMPTS（1次）修复尝试，将错误诊断反馈给 LLM
+ * 采用依赖注入模式（InteractiveAgentDependencies），核心逻辑可脱离真实 LLM 调用进行测试。
+ *
+ * @exports buildScientificModel - 构建科学模型约束
+ * @exports generateHtmlFromModel - 基于科学模型生成 HTML
+ * @exports generateInteractivePage - 完整生成管线入口（编排上述所有步骤）
+ */
+
 import { extractHtmlDocument } from './html-extractor';
 import { validateInteractiveHtml } from './quality-guard';
 import type {

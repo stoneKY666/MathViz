@@ -1,3 +1,10 @@
+/**
+ * ui/avatar-display.tsx - 头像展示组件
+ *
+ * 高级头像展示组件，支持图片、图标和文字回退三种模式。
+ * 根据 src 和 fallback 属性自动选择显示方式，
+ * 支持自定义大小和样式类名。
+ */
 'use client';
 
 import { cn } from '@/lib/utils';

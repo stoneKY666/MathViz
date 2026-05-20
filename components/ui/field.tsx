@@ -1,3 +1,10 @@
+/**
+ * ui/field.tsx - 表单字段组件
+ *
+ * 表单字段布局组件，将 Label、Input 和错误提示组合为一个表单行。
+ * 基于 class-variance-authority 实现变体样式，支持不同尺寸。
+ * 通过 useMemo 缓存生成的 aria ID，确保 Label 和 Input 的无障碍关联。
+ */
 'use client';
 
 import { useMemo } from 'react';

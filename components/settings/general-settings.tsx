@@ -1,3 +1,16 @@
+/**
+ * settings/general-settings.tsx - 通用设置面板
+ *
+ * 应用的通用设置界面，包含：
+ *   1. 模型选择（ModelSelector 组件）
+ *   2. 提供商列表管理（ProviderList 组件）
+ *   3. 提供商配置面板（ProviderConfigPanel 组件）
+ *   4. 添加/编辑/删除自定义服务商
+ *   5. 模型连通性验证
+ * 作为设置对话框的主面板，组合了多个子组件。
+ *
+ * @exports GeneralSettings - 通用设置面板组件
+ */
 'use client';
 
 import { useState, useCallback } from 'react';

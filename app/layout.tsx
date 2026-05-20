@@ -1,3 +1,15 @@
+/**
+ * layout.tsx - 根布局组件
+ *
+ * 应用的顶层布局，所有页面共享此布局结构。
+ * 负责：
+ *   1. 设置全局 Metadata（标题、描述、图标）
+ *   2. 引入全局样式（globals.css）
+ *   3. 提供 I18nProvider 实现国际化上下文
+ *   4. 挂载 ServerProvidersInit 在客户端初始化服务端配置的 AI 提供商
+ *   5. 定义页面根 HTML 结构（渐变背景、最小高度等）
+ */
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { I18nProvider } from '@/lib/hooks/use-i18n';

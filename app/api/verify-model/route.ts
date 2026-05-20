@@ -1,3 +1,13 @@
+/**
+ * api/verify-model/route.ts - 模型连通性验证 API
+ *
+ * POST /api/verify-model — 验证指定 AI 模型的连接是否可用。
+ * 接收模型配置（apiKey、baseUrl、model、providerType），通过 Vercel AI SDK
+ * 发送简单测试 prompt（"Say hello in one word."），验证模型是否正常响应。
+ * 成功返回 { success: true }，失败返回详细错误诊断信息。
+ * 用于设置页面中测试用户配置的模型是否可用。
+ */
+
 import { NextRequest } from 'next/server';
 import { generateText } from 'ai';
 import { createLogger } from '@/lib/logger';

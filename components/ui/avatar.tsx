@@ -1,3 +1,10 @@
+/**
+ * ui/avatar.tsx - 头像组件
+ *
+ * 基于 Radix UI Avatar 原语封装的头像组件。
+ * 支持图片和回退文字两种显示模式，图片加载失败时自动显示回退内容。
+ * 提供 Avatar、AvatarImage、AvatarFallback 三个组合组件。
+ */
 'use client';
 
 import * as React from 'react';

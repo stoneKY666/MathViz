@@ -1,6 +1,21 @@
 /**
- * Settings Store
- * Global settings state synchronized with localStorage
+ * @file settings.ts
+ * @description 全局设置状态管理（Zustand Store）
+ *
+ * 使用 Zustand + persist 中间件管理应用全局设置，状态自动同步到 localStorage（key: settings-storage）。
+ * 核心功能：
+ * - LLM 模型选择（提供商 + 模型 ID）及提供商配置（API 密钥、基础 URL、模型列表）
+ * - TTS 语音设置（模型、静音、音量、自动播放、播放速度）
+ * - 智能体设置（选中的 Agent ID、最大轮次、模式）
+ * - 布局偏好（侧边栏/聊天区折叠状态、聊天区宽度）
+ * - 数据迁移：支持 v0 -> v1 -> v2 版本迁移，以及旧 localStorage 格式迁移
+ * - 自动合并：每次 rehydrate 时自动同步内置提供商的最新模型列表
+ * - 服务端配置拉取：从 /api/server-providers 获取服务端提供商配置并合并
+ *
+ * @exports useSettingsStore - Zustand 设置 store hook
+ * @exports PLAYBACK_SPEEDS - 可用播放速度档位
+ * @exports PlaybackSpeed - 播放速度类型
+ * @exports SettingsState - 设置状态接口
  */
 
 import { create } from 'zustand';

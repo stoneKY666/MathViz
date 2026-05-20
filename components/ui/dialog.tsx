@@ -1,3 +1,12 @@
+/**
+ * ui/dialog.tsx - 对话框组件
+ *
+ * 基于 Radix UI Dialog 原语封装的模态对话框组件。
+ * 支持遮罩层、关闭按钮、标题和描述等元素。
+ * 提供 Dialog、DialogTrigger、DialogContent、DialogHeader、DialogFooter、
+ * DialogTitle、DialogDescription 等组合组件。
+ * 用于设置面板、确认框等需要用户交互的场景。
+ */
 'use client';
 
 import * as React from 'react';

@@ -1,3 +1,12 @@
+/**
+ * ui/textarea.tsx - 多行文本输入框组件
+ *
+ * 基础多行文本输入组件，用于输入较长的文本内容（如概念概述、设计思路等）。
+ * 使用 Tailwind CSS 实现焦点环、禁用状态和调整大小控制。
+ * 支持通过 className 自定义样式。
+ *
+ * @exports Textarea - 多行文本输入框组件
+ */
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';

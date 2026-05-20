@@ -1,3 +1,10 @@
+/**
+ * ui/slider.tsx - 滑块组件
+ *
+ * 基于 Radix UI Slider 原语封装的滑块输入组件。
+ * 支持单值和范围选择，用于数值参数调节（如动画速度、音量等）。
+ * 使用 Tailwind CSS 实现轨道、滑块和焦点环样式。
+ */
 'use client';
 
 import * as React from 'react';

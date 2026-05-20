@@ -1,3 +1,14 @@
+/**
+ * ui/context-menu.tsx - 右键菜单组件
+ *
+ * 基于 Radix UI ContextMenu 原语封装的右键上下文菜单组件。
+ * 支持子菜单、复选项、单选项、分隔线等菜单元素。
+ * 提供 ContextMenu、ContextMenuTrigger、ContextMenuContent、ContextMenuItem、
+ * ContextMenuCheckboxItem、ContextMenuRadioItem、ContextMenuLabel、
+ * ContextMenuSeparator、ContextMenuShortcut、ContextMenuGroup、
+ * ContextMenuPortal、ContextMenuSub、ContextMenuSubContent、ContextMenuSubTrigger
+ * 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

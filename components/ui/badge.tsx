@@ -1,3 +1,12 @@
+/**
+ * ui/badge.tsx - 徽章标签组件
+ *
+ * 基于 class-variance-authority 实现变体样式的标签组件。
+ * 支持 default、secondary、destructive、outline 四种视觉变体。
+ * 可作为普通元素或通过 asChild 渲染为子元素（Slot）。
+ *
+ * @exports Badge - 徽章标签组件
+ */
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Slot } from 'radix-ui';

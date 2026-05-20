@@ -1,0 +1,82 @@
+{
+  "block": "M0",
+  "timestamp": "2026-04-23T05:51:55.870Z",
+  "model": "mimo-v2.5-pro",
+  "total": 5,
+  "completed": 5,
+  "successCount": 5,
+  "partialCount": 0,
+  "errorCount": 0,
+  "results": [
+    {
+      "concept": {
+        "name": "简谐运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 41850,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 157.201
+    },
+    {
+      "concept": {
+        "name": "抛体运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 32253,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 119.878
+    },
+    {
+      "concept": {
+        "name": "电场线",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 30798,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 100.167
+    },
+    {
+      "concept": {
+        "name": "电磁感应",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 28789,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 116.769
+    },
+    {
+      "concept": {
+        "name": "光的干涉",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 35409,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 137.72
+    }
+  ]
+}

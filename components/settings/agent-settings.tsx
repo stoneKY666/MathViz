@@ -1,3 +1,15 @@
+/**
+ * settings/agent-settings.tsx - Agent 设置面板
+ *
+ * 配置 AI Agent 的行为参数，包括：
+ *   1. 预设 Agent 选择（勾选启用/禁用特定 Agent）
+ *   2. 最大对话轮数设置
+ *   3. Agent 模式切换（预设模式 / 自动模式）
+ *   4. 自动模式下的 Agent 数量配置
+ * 使用 useSettingsStore 管理状态，useI18n 实现国际化。
+ *
+ * @exports AgentSettings - Agent 设置面板组件
+ */
 'use client';
 
 import { Label } from '@/components/ui/label';

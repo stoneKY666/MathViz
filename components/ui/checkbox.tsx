@@ -1,3 +1,10 @@
+/**
+ * ui/checkbox.tsx - 复选框组件
+ *
+ * 基于 Radix UI Checkbox 原语封装的复选框组件。
+ * 选中时显示勾选图标，支持受控和非受控模式。
+ * 使用 Tailwind CSS 实现焦点环和过渡动画。
+ */
 'use client';
 
 import * as React from 'react';

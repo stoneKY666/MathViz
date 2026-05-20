@@ -1,3 +1,11 @@
+/**
+ * ui/command.tsx - 命令面板组件
+ *
+ * 基于 cmdk 库封装的命令搜索面板组件。
+ * 提供全屏搜索界面，支持命令分组、快捷键触发和键盘导航。
+ * 提供 Command、CommandInput、CommandList、CommandEmpty、CommandGroup、
+ * CommandItem、CommandShortcut、CommandSeparator 等组合组件。
+ */
 'use client';
 
 import * as React from 'react';

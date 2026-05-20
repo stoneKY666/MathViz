@@ -1,0 +1,26 @@
+{
+  "block": "M0-0",
+  "timestamp": "2026-04-23T05:41:09.598Z",
+  "model": "mimo-v2.5-pro",
+  "total": 1,
+  "completed": 1,
+  "successCount": 1,
+  "partialCount": 0,
+  "errorCount": 0,
+  "results": [
+    {
+      "concept": {
+        "name": "简谐运动",
+        "subject": "物理"
+      },
+      "status": "success",
+      "htmlLength": 41042,
+      "validation": {
+        "passed": true,
+        "errors": [],
+        "warnings": []
+      },
+      "duration": 144.175
+    }
+  ]
+}

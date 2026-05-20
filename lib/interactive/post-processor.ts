@@ -1,3 +1,15 @@
+/**
+ * post-processor.ts - HTML 后处理器
+ *
+ * 对生成的交互式 HTML 执行后处理流水线：
+ *   1. LaTeX 分隔符转换：将 $...$ 转为 \(...\)，$$...$$ 转为 \[...\]
+ *   2. KaTeX 注入：如果 HTML 未包含 KaTeX，自动注入 KaTeX CSS 和 JS CDN 链接
+ *   3. 保护 <script> 和 <style> 标签内的内容不被分隔符转换影响
+ * 确保生成的 HTML 能正确渲染数学公式。
+ *
+ * @exports postProcessInteractiveHtml - 执行 HTML 后处理的主函数
+ */
+
 export function postProcessInteractiveHtml(html: string): string {
   let processed = convertLatexDelimiters(html);
   if (!processed.toLowerCase().includes('katex')) {

@@ -1,3 +1,12 @@
+/**
+ * ui/button-group.tsx - 按钮组组件
+ *
+ * 将多个按钮组合为一个视觉整体，共享边框和圆角。
+ * 使用 Separator 分隔按钮，支持水平和垂直布局。
+ * 通过 Slot 实现 asChild 模式。
+ *
+ * @exports ButtonGroup, ButtonGroupItem - 按钮组组件
+ */
 import { cva, type VariantProps } from 'class-variance-authority';
 import { Slot } from 'radix-ui';
 

@@ -1,3 +1,13 @@
+/**
+ * settings/add-provider-dialog.tsx - 添加自定义服务商对话框
+ *
+ * 提供添加自定义 AI 服务商的 UI 对话框。
+ * 用户可输入服务商名称、API Key、Base URL 和模型列表，
+ * 配置将保存到 Zustand 设置存储的 providersConfig 中。
+ * 支持 OpenAI 兼容和 Anthropic 兼容两种服务商类型。
+ *
+ * @exports AddProviderDialog - 添加服务商对话框组件
+ */
 'use client';
 
 import { useState } from 'react';
